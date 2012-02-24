@@ -1,7 +1,7 @@
 Ker-Sim
 -----
 
-Ker-Sim is a Kernl Simulator based on PicoC. PicoC is a very small C interpreter
+Ker-Sim is a Kernel Simulator based on PicoC. PicoC is a very small C interpreter
 for scripting.
 
 Compiling Ker-Sim
