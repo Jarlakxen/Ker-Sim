@@ -7,8 +7,6 @@ for scripting.
 Compiling Ker-Sim
 ---------------
 
-picoc can be compiled for a UNIX/Linux/POSIX host by typing "make".
-
 Symbols: -DUNIX_HOST
 Linker: -lm -lreadline
 
