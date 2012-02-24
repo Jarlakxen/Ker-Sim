@@ -1,6 +1,6 @@
 /* picoc parser - parses source and executes statements */
 
-#include "picoc.h"
+#include "cpu.h"
 #include "interpreter.h"
 
 /* a chunk of heap-allocated tokens we'll cleanup when we're done */

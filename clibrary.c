@@ -1,7 +1,7 @@
 /* picoc mini standard C library - provides an optional tiny C standard library 
  * if BUILTIN_MINI_STDLIB is defined */ 
  
-#include "picoc.h"
+#include "cpu.h"
 #include "interpreter.h"
 
 /* the picoc version string */

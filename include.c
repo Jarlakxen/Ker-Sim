@@ -1,7 +1,7 @@
 /* picoc include system - can emulate system includes from built-in libraries
  * or it can include and parse files if the system has files */
  
-#include "picoc.h"
+#include "cpu.h"
 #include "interpreter.h"
 
 #ifndef NO_HASH_INCLUDE

@@ -1,4 +1,4 @@
-#include "../picoc.h"
+#include "../cpu.h"
 #include "../interpreter.h"
 
 #ifdef USE_READLINE
