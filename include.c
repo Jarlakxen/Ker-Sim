@@ -33,9 +33,7 @@ void IncludeInit()
     IncludeRegister("stdlib.h", &StdlibSetupFunc, &StdlibFunctions[0], NULL);
     IncludeRegister("string.h", &StringSetupFunc, &StringFunctions[0], NULL);
     IncludeRegister("time.h", &StdTimeSetupFunc, &StdTimeFunctions[0], StdTimeDefs);
-# ifndef WIN32
 	IncludeRegister("unistd.h", &UnistdSetupFunc, &UnistdFunctions[0], UnistdDefs);
-# endif
 #endif
 }
 
@@ -68,7 +66,7 @@ void IncludeRegister(const char *IncludeName, void (*SetupFunction)(void), struc
 }
 
 /* include all of the system headers */
-void PicocIncludeAllSystemHeaders()
+void CPUIncludeAllSystemHeaders()
 {
     struct IncludeLibrary *ThisInclude = IncludeLibList;
     
@@ -97,7 +95,7 @@ void IncludeFile(char *FileName)
                 
                 /* parse the setup C source code - may define types etc. */
                 if (LInclude->SetupCSource != NULL)
-                    PicocParse(FileName, LInclude->SetupCSource, strlen(LInclude->SetupCSource), TRUE, TRUE, FALSE, FALSE);
+                    CPUParse(FileName, LInclude->SetupCSource, strlen(LInclude->SetupCSource), TRUE, TRUE, FALSE, FALSE);
                 
                 /* set up the library functions */
                 if (LInclude->FuncList != NULL)
@@ -109,7 +107,7 @@ void IncludeFile(char *FileName)
     }
     
     /* not a predefined file, read a real file */
-    PicocPlatformScanFile(FileName);
+    CPUPlatformScanFile(FileName);
 }
 
 #endif /* NO_HASH_INCLUDE */

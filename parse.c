@@ -501,31 +501,26 @@ enum ParseResult ParseStatement(struct ParseState *Parser, int CheckTrailingSemi
             
         case TokenIdentifier:
             /* might be a typedef-typed variable declaration or it might be an expression */
-            if (VariableDefined(LexerValue->Val->Identifier))
-            {
-                VariableGet(Parser, LexerValue->Val->Identifier, &VarValue);
-                if (VarValue->Typ->Base == Type_Type)
-                {
-                    *Parser = PreState;
-                    ParseDeclaration(Parser, Token);
-                    break;
-                }
-            }
-            else
-            {
-                /* it might be a goto label */
-                enum LexToken NextToken = LexGetToken(Parser, NULL, FALSE);
-                if (NextToken == TokenColon)
-                {
-                    /* declare the identifier as a goto label */
-                    LexGetToken(Parser, NULL, TRUE);
-                    if (Parser->Mode == RunModeGoto && LexerValue->Val->Identifier == Parser->SearchGotoLabel)
-                        Parser->Mode = RunModeRun;
-        
-                    CheckTrailingSemicolon = FALSE;
-                    break;
-                }
-            }
+            if (VariableDefined(LexerValue->Val->Identifier)) {
+				VariableGet(Parser, LexerValue->Val->Identifier, &VarValue);
+				if (VarValue->Typ->Base == Type_Type) {
+					*Parser = PreState;
+					ParseDeclaration(Parser, Token);
+					break;
+				}
+			} else {
+				/* it might be a goto label */
+				enum LexToken NextToken = LexGetToken(Parser, NULL, FALSE);
+				if (NextToken == TokenColon) {
+					/* declare the identifier as a goto label */
+					LexGetToken(Parser, NULL, TRUE);
+					if (Parser->Mode == RunModeGoto && LexerValue->Val->Identifier == Parser->SearchGotoLabel)
+						Parser->Mode = RunModeRun;
+
+					CheckTrailingSemicolon = FALSE;
+					break;
+				}
+			}
             /* else fallthrough to expression */
             
         case TokenAsterisk: 
@@ -813,7 +808,7 @@ enum ParseResult ParseStatement(struct ParseState *Parser, int CheckTrailingSemi
 }
 
 /* quick scan a source file for definitions */
-void PicocParse(const char *FileName, const char *Source, int SourceLen, int RunIt, int CleanupNow, int CleanupSource, int EnableDebugger)
+void CPUParse(const char *FileName, const char *Source, int SourceLen, int RunIt, int CleanupNow, int CleanupSource, int EnableDebugger)
 {
     struct ParseState Parser;
     enum ParseResult Ok;
@@ -855,13 +850,13 @@ void PicocParse(const char *FileName, const char *Source, int SourceLen, int Run
 }
 
 /* parse interactively */
-void PicocParseInteractiveNoStartPrompt(int EnableDebugger)
+void CPUParseInteractiveNoStartPrompt(int EnableDebugger)
 {
     struct ParseState Parser;
     enum ParseResult Ok;
     
     LexInitParser(&Parser, NULL, NULL, StrEmpty, TRUE, EnableDebugger);
-    PicocPlatformSetExitPoint();
+    CPUPlatformSetExitPoint();
     LexInteractiveClear(&Parser);
 
     do
@@ -879,8 +874,8 @@ void PicocParseInteractiveNoStartPrompt(int EnableDebugger)
 }
 
 /* parse interactively, showing a startup message */
-void PicocParseInteractive()
+void CPUParseInteractive()
 {
     PlatformPrintf(INTERACTIVE_PROMPT_START);
-    PicocParseInteractiveNoStartPrompt(TRUE);
+    CPUParseInteractiveNoStartPrompt(TRUE);
 }

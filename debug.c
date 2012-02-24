@@ -117,7 +117,7 @@ void DebugCheckStatement(struct ParseState *Parser)
     if (DoBreak)
     {
         PlatformPrintf("Handling a break\n");
-        PicocParseInteractiveNoStartPrompt(FALSE);
+        CPUParseInteractiveNoStartPrompt(FALSE);
     }
 }
 
