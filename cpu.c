@@ -18,9 +18,9 @@ int main(int argc, char **argv) {
 	int StackSize = getenv("STACKSIZE") ? atoi(getenv("STACKSIZE")) : CPU_STACK_SIZE;
 
 	if (argc < 2) {
-		printf("Format: picoc <csource1.c>... [- <arg1>...]    : run a program (calls main() to start it)\n"
-				"        picoc -s <csource1.c>... [- <arg1>...] : script mode - runs the program without calling main()\n"
-				"        picoc -i                               : interactive mode\n");
+		printf("Format: cpu <csource1.c>... [- <arg1>...]    : run a program (calls main() to start it)\n"
+				"        cpu -s <csource1.c>... [- <arg1>...] : script mode - runs the program without calling main()\n"
+				"        cpu -i                               : interactive mode\n");
 		exit(1);
 	}
 

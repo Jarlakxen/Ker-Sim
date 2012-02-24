@@ -410,7 +410,7 @@ void LibExit(struct ParseState *Parser, struct Value *ReturnValue, struct Value 
 	PlatformExit(Param[0]->Val->Integer);
 }
 
-#ifdef PICOC_LIBRARY
+#ifdef CPU_LIBRARY
 void LibSin(struct ParseState *Parser, struct Value *ReturnValue, struct Value **Param, int NumArgs)
 {
 	ReturnValue->Val->FP = sin(Param[0]->Val->FP);
@@ -670,7 +670,7 @@ struct LibraryFunction CLibrary[] =
 	{	LibGets, "char *gets(char *);"},
 	{	LibGetc, "int getchar();"},
 	{	LibExit, "void exit(int);"},
-#ifdef PICOC_LIBRARY
+#ifdef CPU_LIBRARY
 	{	LibSin, "float sin(float);"},
 	{	LibCos, "float cos(float);"},
 	{	LibTan, "float tan(float);"},

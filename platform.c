@@ -1,4 +1,4 @@
-/* picoc's interface to the underlying platform. most platform-specific code
+/* cpu's interface to the underlying platform. most platform-specific code
  * is in platform/platform_XX.c and platform/library_XX.c */
 
 #include "cpu.h"
